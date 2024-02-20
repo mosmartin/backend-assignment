@@ -1,6 +1,14 @@
-import { prop, getModelForClass, ModelOptions } from "@typegoose/typegoose";
+import {
+  prop,
+  getModelForClass,
+  ModelOptions,
+  index,
+} from "@typegoose/typegoose";
 
-@ModelOptions({ schemaOptions: { collection: "collected-fee-events" } })
+@index({ blockNumber: 1 }, { unique: true })
+@ModelOptions({
+  schemaOptions: { collection: "collected-fee-events", timestamps: true },
+})
 class FeesCollectedEvent {
   @prop({ required: true })
   token!: string;
