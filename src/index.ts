@@ -3,6 +3,7 @@ import { ethers } from "ethers";
 import { BlockTag } from "@ethersproject/abstract-provider";
 
 import feeCollectorABI from "../abi/fee_collector_abi.json";
+import connectToDatabase from "./db/db";
 
 dotenv.config();
 
@@ -50,6 +51,8 @@ const parseFeeCollectorEvent = (
 };
 
 const main = async () => {
+  connectToDatabase();
+
   try {
     const currentBlock = await provider.getBlockNumber();
 
