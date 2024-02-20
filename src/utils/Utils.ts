@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 import { BlockTag } from "@ethersproject/abstract-provider";
 
-interface ParsedFeeCollectedEvent {
+export interface ParsedFeeCollectedEvent {
   token: string;
   integrator: string;
   integratorFee: BigInt;
