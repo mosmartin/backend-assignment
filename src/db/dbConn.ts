@@ -13,8 +13,8 @@ const connectToDatabase = async (): Promise<void> => {
     );
 
     console.log("🟢 Connected to DB!\n");
-  } catch (error) {
-    console.error("🔴 Failed to connect to DB:", error);
+  } catch (err) {
+    console.error("🔴 Failed to connect to DB:", err);
   }
 };
 
@@ -22,8 +22,8 @@ const disconnectFromDatabase = async (): Promise<void> => {
   try {
     await mongoose.disconnect();
     console.log("🟢 Successfully disconnected from DB!\n");
-  } catch (error) {
-    console.error("🔴 Failed to disconnect from DB:", error);
+  } catch (err) {
+    console.error("🔴 Failed to disconnect from DB:", err);
   }
 };
 

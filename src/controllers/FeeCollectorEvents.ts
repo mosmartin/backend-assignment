@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import FeesCollectedEventModel from "../models/FeeCollectedEvent";
 import { ParsedFeeCollectedEvent } from "../utils/Utils";
 
@@ -12,9 +13,9 @@ export const getLatestDbBlockNumber = async (): Promise<bigint> => {
     } else {
       return BigInt(47961368);
     }
-  } catch (error) {
-    console.error("🔴 Failed to get latest block number:", error);
-    throw error;
+  } catch (err) {
+    console.error("🔴 Failed to get latest block number:", err);
+    throw err;
   }
 };
 
@@ -23,8 +24,12 @@ export const saveFeeCollectedEvent = async (
 ) => {
   try {
     await FeesCollectedEventModel.create(events);
-  } catch (error) {
-    console.error("🔴 Failed to save events to database:", error);
-    throw error;
+  } catch (err: any) {
+    if (err.code === 11000) {
+      console.log("🚨 Duplicate entry, skipping already processed block...");
+      return;
+    }
+
+    throw err;
   }
 };
