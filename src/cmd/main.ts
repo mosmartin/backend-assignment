@@ -1,13 +1,13 @@
 import * as dotenv from "dotenv";
 import { ethers } from "ethers";
 
-import feeCollectorABI from "../abi/fee_collector_abi.json";
-import { connectToDatabase, disconnectFromDatabase } from "./db/dbConn";
-import { getEvents, parseFeeCollectorEvent } from "./utils/Utils";
+import feeCollectorABI from "../../abi/fee_collector_abi.json";
+import { connectToDatabase, disconnectFromDatabase } from "../db/dbConn";
+import { getEvents, parseFeeCollectorEvent } from "../utils/Utils";
 import {
   getLatestDbBlockNumber,
   saveFeeCollectedEvent,
-} from "./controllers/FeeCollectorEvents";
+} from "../controllers/FeeCollectorEvents";
 
 dotenv.config();
 
@@ -63,8 +63,8 @@ const main = async () => {
         }
       }
     }
-  } catch (error) {
-    console.error(error);
+  } catch (err) {
+    console.error(err);
   } finally {
     await disconnectFromDatabase();
   }
