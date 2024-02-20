@@ -30,3 +30,36 @@ const getEvents = async (
   const filter = feeCollector.filters.FeesCollected();
   return feeCollector.queryFilter(filter, fromBlock, toBlock);
 };
+
+const parseFeeCollectorEvent = (
+  event: (ethers.Log | ethers.EventLog)[]
+): ParsedFeeCollectedEvent[] => {
+  return event.map((e) => {
+    const parsedEvent = feeCollector.interface.parseLog(e);
+
+    const parsed: ParsedFeeCollectedEvent = {
+      token: parsedEvent?.args[0],
+      integrator: parsedEvent?.args[1],
+      integratorFee: parsedEvent?.args[2],
+      lifiFee: parsedEvent?.args[3],
+      blockNumber: BigInt(e.blockNumber),
+    };
+
+    return parsed;
+  });
+};
+
+const main = async () => {
+  try {
+    const currentBlock = await provider.getBlockNumber();
+
+    const events = await getEvents(blockNumber, blockNumber + 1000);
+    const parsedEvents = parseFeeCollectorEvent(events);
+    console.log(currentBlock);
+    console.log(parsedEvents);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+main();
