@@ -1,0 +1,23 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@ethersproject/abstract-provider": "^5.7.0",
+    "@typegoose/typegoose": "^12.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.4",
+    "ethers": "^6.11.1",
+    "mongoose": "^8.1.3"
+  }
+}
