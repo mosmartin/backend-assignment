@@ -3,11 +3,11 @@ import { ethers } from "ethers";
 
 import feeCollectorABI from "../../abi/fee_collector_abi.json";
 import { connectToDatabase, disconnectFromDatabase } from "../db/dbConn";
-import { getEvents, parseFeeCollectorEvent } from "../utils/Utils";
+import { getEvents, parseFeeCollectorEvent } from "../helpers/eventsProcessor";
 import {
   getLatestDbBlockNumber,
   saveFeeCollectedEvent,
-} from "../controllers/FeeCollectorEvents";
+} from "../db/FeeCollectorEvents";
 
 dotenv.config();
 
