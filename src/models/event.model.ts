@@ -13,7 +13,7 @@ class FeesCollectedEvent {
   @prop({ required: true })
   token!: string;
 
-  @prop({ required: true })
+  @prop({ required: true, index: true })
   integrator!: string;
 
   @prop({ required: true })
