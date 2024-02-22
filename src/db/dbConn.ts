@@ -6,7 +6,7 @@ dotenv.config();
 const connectToDatabase = async (): Promise<void> => {
   try {
     await mongoose.connect(
-      `mongodb://${process.env.MONGO_DB_PASS}:${process.env.MONGO_DB_PASS}@${process.env.MONGO_DB_HOST}:${process.env.MONGO_DB_PORT}`,
+      `mongodb://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASS}@${process.env.MONGO_DB_HOST}:${process.env.MONGO_DB_PORT}`,
       {
         dbName: process.env.MONGO_DB_DATABASE,
       }
