@@ -26,7 +26,7 @@ export const getAllEventsByIntegrator = async (req: Request, res: Response) => {
       };
     });
 
-    return res.status(200).json({ serializedData });
+    return res.status(200).json({ data: serializedData });
   } catch (err) {
     console.error("🔴 Failed to get events by integrator:", err);
     return res
