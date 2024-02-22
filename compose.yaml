@@ -1,0 +1,24 @@
+services:
+  events_processor:
+    build:
+      context: .
+    container_name: events_processor
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/usr/src/app
+    environment:
+      MONGO_URI: mongodb://admin:password@localhost:27017/li-fi
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo
+    container_name: mongodb-container
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+    ports:
+      - 27017:27017
+    volumes:
+      - ~/data/mongo:/data/db
